@@ -38,43 +38,53 @@ const handleNumberClick = (num) => {
 }
 
 const setDisplayedValue = (value) => {
-    if(value.toString().length > 8) {
+    if (value.toString().length > 8) {
         document.getElementById("display-window").className = "display-value-many-digits";
+    }
+    else {
+        document.getElementById("display-window").className = "display-value";
     }
     displayedValue.innerText = value;
 }
 
 const handleOperatorClick = (clickedValue) => {
-    if (clickedValue === "AC") {
-        currentValue = 0;
-        operator = null;
-        setDisplayedValue(0);
-    }
-    else if (clickedValue === "±") {
-        currentValue = parseFloat(displayedValue.innerText) * -1;
-        action = null;
-        setDisplayedValue(currentValue);
-    }
-    else if (clickedValue === "%") {
-        currentValue = parseFloat(displayedValue.innerText) * 0.01;
-        action = clickedValue;
-        setDisplayedValue(currentValue);
-    }
-    else if (clickedValue === ",") {
-        currentValue = displayedValue.innerText;
-        if (currentValue.indexOf(".") === -1) {
-            currentValue += ".";
-        };
-        setDisplayedValue(currentValue);
-    }
-    else {
-        if (operator && operator !== "=" && !isPreviousClickAnAction(previousClick)) {
-            const equation = currentValue + operators[operator] + displayedValue.innerText;
-            const value = eval(equation);
-            setDisplayedValue(value);
-        }
-        currentValue = parseFloat(displayedValue.innerText);
-        operator = clickedValue;
+
+    switch (clickedValue) {
+        case "AC":
+            currentValue = 0;
+            operator = null;
+            setDisplayedValue(0);
+            break;
+
+        case "±":
+            currentValue = parseFloat(displayedValue.innerText) * -1;
+            operator = null;
+            setDisplayedValue(currentValue);
+            break;
+
+        case "%":
+            currentValue = parseFloat(displayedValue.innerText) * 0.01;
+            operator = clickedValue;
+            setDisplayedValue(currentValue);
+            break;
+
+        case ",":
+            currentValue = displayedValue.innerText;
+            if (currentValue.indexOf(".") === -1) {
+                currentValue += ".";
+            };
+            setDisplayedValue(currentValue);
+            break;
+
+        default:
+            if (operator && operator !== "=" && !isPreviousClickAnAction(previousClick)) {
+                const equation = currentValue + operators[operator] + displayedValue.innerText;
+                const value = eval(equation);
+                setDisplayedValue(value);
+            }
+            currentValue = parseFloat(displayedValue.innerText);
+            operator = clickedValue;
+            break;
     }
 }
 
