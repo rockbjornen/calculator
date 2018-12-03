@@ -38,8 +38,10 @@ const handleNumberClick = (num) => {
 }
 
 const setDisplayedValue = (value) => {
-    const displayValue = Math.round(value * 1000000) / 1000000;
-    displayedValue.innerText = displayValue;
+    if(value.toString().length > 8) {
+        document.getElementById("display-window").className = "display-value-many-digits";
+    }
+    displayedValue.innerText = value;
 }
 
 const handleOperatorClick = (clickedValue) => {
@@ -49,14 +51,21 @@ const handleOperatorClick = (clickedValue) => {
         setDisplayedValue(0);
     }
     else if (clickedValue === "±") {
-        current = parseFloat(displayedValue.innerText) * -1;
+        currentValue = parseFloat(displayedValue.innerText) * -1;
         action = null;
-        setDisplayedValue(current);
+        setDisplayedValue(currentValue);
     }
     else if (clickedValue === "%") {
-        current = parseFloat(displayedValue.innerText) * 0.01;
+        currentValue = parseFloat(displayedValue.innerText) * 0.01;
         action = clickedValue;
-        setDisplayedValue(current);
+        setDisplayedValue(currentValue);
+    }
+    else if (clickedValue === ",") {
+        currentValue = displayedValue.innerText;
+        if (currentValue.indexOf(".") === -1) {
+            currentValue += ".";
+        };
+        setDisplayedValue(currentValue);
     }
     else {
         if (operator && operator !== "=" && !isPreviousClickAnAction(previousClick)) {

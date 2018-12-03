@@ -35,6 +35,13 @@ body {
     color: white;
 }
 
+.display-value-many-digits {
+    padding-right: 20px;
+    font-size: 20px;
+    background-color: black;
+    color: white;
+}
+
 .btn-row {
     display: flex;
     align-items: center;
