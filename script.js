@@ -6,6 +6,7 @@ let operator = null;
 const operators = { "+": "+", "-": "-", "x": "*" }
 
 for (let i = 0; i < buttons.length; i++) {
+
     buttons[i].onclick = function (e) {
         const clickedValue = e.target.innerText;
         const num = parseFloat(clickedValue);
@@ -16,13 +17,17 @@ for (let i = 0; i < buttons.length; i++) {
         }
         else {
             //Handle operator clicks here
-            if (operator && operator !== "=") {
-                const equation = currentValue + operators[operator] + displayedValue.innerText;
-                const value = eval(equation);
-                displayedValue.innerText = value;
-            }
-            currentValue = parseInt(displayedValue.innerText);
-            operator = clickedValue;
+            handleOperatorClick(clickedValue);
         }
     }
+}
+
+const handleOperatorClick = (clickedValue) => {
+    if (operator && operator !== "=") {
+        const equation = currentValue + operators[operator] + displayedValue.innerText;
+        const value = eval(equation);
+        displayedValue.innerText = value;
+    }
+    currentValue = parseInt(displayedValue.innerText);
+    operator = clickedValue;
 }
