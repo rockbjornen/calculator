@@ -16,10 +16,13 @@ for (let i = 0; i < buttons.length; i++) {
         }
         else {
             //Handle operator clicks here
-            operator = clickedValue;
             if (operator && operator !== "=") {
-                console.log(operators[operator]);
+                const equation = currentValue + operators[operator] + displayedValue.innerText;
+                const value = eval(equation);
+                displayedValue.innerText = value;
             }
+            currentValue = parseInt(displayedValue.innerText);
+            operator = clickedValue;
         }
     }
 }
