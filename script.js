@@ -20,13 +20,17 @@ for (let i = 0; i < buttons.length; i++) {
     }
 }
 
+const setDisplayedValue = (value) => {
+    displayedValue.innerText = value;
+}
+
 const handleNumberClick = (num) => {
     if (!isNaN(num)) {
         if (currentValue === parseInt(displayedValue.innerText)) {
-            displayedValue.innerText = num;
+            setDisplayedValue(num);
         } else {
             const value = displayedValue.innerText += num;
-            displayedValue.innerText = value;
+            setDisplayedValue(value);
         }
     }
 }
@@ -35,7 +39,7 @@ const handleOperatorClick = (clickedValue) => {
     if (operator && operator !== "=" && !isPreviousClickAnAction(previousClick)) {
         const equation = currentValue + operators[operator] + displayedValue.innerText;
         const value = eval(equation);
-        displayedValue.innerText = value;
+        setDisplayedValue(value);
     }
     currentValue = parseInt(displayedValue.innerText);
     operator = clickedValue;
