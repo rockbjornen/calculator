@@ -28,7 +28,7 @@ for (let i = 0; i < buttons.length; i++) {
 
 const handleNumberClick = (num) => {
     if (!isNaN(num)) {
-        if (currentValue === parseInt(displayedValue.innerText)) {
+        if (currentValue === parseFloat(displayedValue.innerText)) {
             setDisplayedValue(num);
         } else {
             const value = displayedValue.innerText += num;
@@ -47,13 +47,23 @@ const handleOperatorClick = (clickedValue) => {
         operator = null;
         setDisplayedValue(0);
     }
+    else if (clickedValue === "±") {
+        current = parseFloat(displayedValue.innerText) * -1;
+        action = null;
+        setDisplayedValue(current);
+    }
+    else if (clickedValue === "%") {
+        current = parseFloat(displayedValue.innerText) * 0.01;
+        action = clickedValue;
+        setDisplayedValue(current);
+    }
     else {
         if (operator && operator !== "=" && !isPreviousClickAnAction(previousClick)) {
             const equation = currentValue + operators[operator] + displayedValue.innerText;
             const value = eval(equation);
             setDisplayedValue(value);
         }
-        currentValue = parseInt(displayedValue.innerText);
+        currentValue = parseFloat(displayedValue.innerText);
         operator = clickedValue;
     }
 }
