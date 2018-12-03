@@ -1,5 +1,11 @@
 const buttons = document.querySelectorAll('.btn');
-const operators = { "+": "+", "-": "-", "x": "*" };
+const operators = {
+    "+": "+",
+    "-": "-",
+    "x": "*",
+    "÷": "/",
+    "%": "%",
+};
 
 let displayedValue = document.querySelector('.display-value');
 let operator = null;
@@ -20,10 +26,6 @@ for (let i = 0; i < buttons.length; i++) {
     }
 }
 
-const setDisplayedValue = (value) => {
-    displayedValue.innerText = value;
-}
-
 const handleNumberClick = (num) => {
     if (!isNaN(num)) {
         if (currentValue === parseInt(displayedValue.innerText)) {
@@ -35,14 +37,25 @@ const handleNumberClick = (num) => {
     }
 }
 
+const setDisplayedValue = (value) => {
+    displayedValue.innerText = value;
+}
+
 const handleOperatorClick = (clickedValue) => {
-    if (operator && operator !== "=" && !isPreviousClickAnAction(previousClick)) {
-        const equation = currentValue + operators[operator] + displayedValue.innerText;
-        const value = eval(equation);
-        setDisplayedValue(value);
+    if (clickedValue === "AC") {
+        currentValue = 0;
+        operator = null;
+        setDisplayedValue(0);
     }
-    currentValue = parseInt(displayedValue.innerText);
-    operator = clickedValue;
+    else {
+        if (operator && operator !== "=" && !isPreviousClickAnAction(previousClick)) {
+            const equation = currentValue + operators[operator] + displayedValue.innerText;
+            const value = eval(equation);
+            setDisplayedValue(value);
+        }
+        currentValue = parseInt(displayedValue.innerText);
+        operator = clickedValue;
+    }
 }
 
 const isPreviousClickAnAction = (previousClick) => {
