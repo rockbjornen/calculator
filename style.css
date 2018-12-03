@@ -1,5 +1,35 @@
 body {
+    font-family: Roboto, sans-serif;
 }
 
 .calculator {
+    margin: 20px auto;
+    background-color: lightgray;
+    width: 280px;
+}
+
+.display {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.btn-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn {
+    height: 30px;
+    width: 30px;
+    background-color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:hover {
+    opacity: 0.8;
+    cursor: pointer;
 }
