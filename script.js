@@ -3,8 +3,7 @@ const operators = {
     "+": "+",
     "-": "-",
     "x": "*",
-    "÷": "/",
-    "%": "%",
+    "÷": "/"
 };
 
 let displayedValue = document.querySelector('.display-value');

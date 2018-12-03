@@ -4,14 +4,19 @@ body {
 
 .calculator {
     margin: 20px auto;
-    background-color: lightgray;
+    background-color: black;
+    padding: 15px;
+    border-radius: 24px;
     width: 280px;
 }
 
 .display {
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .btn-row {
@@ -21,15 +26,38 @@ body {
 }
 
 .btn {
-    height: 30px;
-    width: 30px;
-    background-color: gray;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: #323333;
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 5px;
+    font-size: 24px;
 }
 
 .btn:hover {
     opacity: 0.8;
     cursor: pointer;
+}
+
+.operator {
+    background-color: #FF9500;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+}
+
+.special-operator {
+    background-color: #A5A5A5;
+    color: black;
+}
+
+#zero {
+    border-radius: 50px;
+    flex-basis: 130px;
 }
