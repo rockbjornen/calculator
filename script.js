@@ -11,14 +11,23 @@ for (let i = 0; i < buttons.length; i++) {
         const clickedValue = e.target.innerText;
         const num = parseFloat(clickedValue);
         if (!isNaN(num)) {
-            //Handle number clicks here
-            console.log(num);
-            displayedValue.innerText = num;
+            handleNumberClick(num);
         }
         else {
             handleOperatorClick(clickedValue);
         }
         previousClick = clickedValue;
+    }
+}
+
+const handleNumberClick = (num) => {
+    if (!isNaN(num)) {
+        if (currentValue === parseInt(displayedValue.innerText)) {
+            displayedValue.innerText = num;
+        } else {
+            const value = displayedValue.innerText += num;
+            displayedValue.innerText = value;
+        }
     }
 }
 
