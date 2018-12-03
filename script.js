@@ -69,11 +69,11 @@ const handleOperatorClick = (clickedValue) => {
             break;
 
         case ",":
-            currentValue = displayedValue.innerText;
-            if (currentValue.indexOf(".") === -1) {
-                currentValue += ".";
+            let dotValue = displayedValue.innerText;
+            if (dotValue.indexOf(".") === -1) {
+                dotValue += ".";
             };
-            setDisplayedValue(currentValue);
+            setDisplayedValue(dotValue);
             break;
 
         default:
