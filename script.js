@@ -3,7 +3,8 @@ const operators = {
     "+": "+",
     "-": "-",
     "x": "*",
-    "÷": "/"
+    "÷": "/",
+    ",": "."
 };
 
 let displayedValue = document.querySelector('.display-value');
@@ -37,7 +38,8 @@ const handleNumberClick = (num) => {
 }
 
 const setDisplayedValue = (value) => {
-    displayedValue.innerText = value;
+    const displayValue = Math.round(value * 1000000) / 1000000;
+    displayedValue.innerText = displayValue;
 }
 
 const handleOperatorClick = (clickedValue) => {
